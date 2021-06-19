@@ -44,5 +44,26 @@ const slotSymbols = {
 /*---- cached element references ----*/
 
 /*---- event listeners ----*/
+//needs an event listener for 3 buttons for the 3 slot positions
+//needs an event listenter for the start button
+//needs an event listener for the play button
+
+
 
 /*---- functions ----*/
+function initialize() {
+    //what I need to start the game
+}
+
+function getRandomIdx() {
+    return Math.floor(Math.random() * 8)
+    //used to generate a number that will corespond with slot symbols
+}
+
+function checkSlots() {
+    //to see if any points are awarded
+}
+
+function render() {
+    //whenever game state is changed to render our app state
+}
