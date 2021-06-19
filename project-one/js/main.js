@@ -1,27 +1,41 @@
 /*---- constants ----*/
-const slotSymbols {
-    bell: {
+const lookUp = ['apple', 'cherry', 'coin', 'diamond', 'grape', 'heart', 'orange', 'seven']
+
+const slotSymbols = {
+    apple: {
+        imgUrl: 'imgs/apple.png'
 
     },
     cherry: {
-
-    },
-    horshoe: {
-
-    },
-    lemon: {
+        imgUrl: 'imgs/cherry.png'
         
     },
+    coin: {
+        imgUrl: 'imgs/coin.png'
+
+    },
+    diamond: {
+        imgUrl: 'imgs/diamond.png'
+
+    },
+    grape: {
+        imgUrl: 'imgs/grape.png'
+        
+    },
+    heart: {
+        imgUrl: 'imgs/heart.png'
+
+    },
+    insertCoin: {
+        imgUrl: 'imgs/coinslot.png'
+
+    },
     orange: {
+        imgUrl: 'imgs/orange.png'
         
     },
     seven: {
-
-    },
-    strawberry: {
-
-    },
-    watermelon: {
+        imgUrl: 'imgs/seven.png'
 
     }
 }
