@@ -40,8 +40,19 @@ const slotSymbols = {
     }
 }
 /*---- app's state (variables) ----*/
+let score, result, state
 
 /*---- cached element references ----*/
+const gameSlotOne = document.querySelector('#slot1')
+const gameSlotTwo = document.querySelector('#slot2')
+const gameslotThree = document.querySelector('#slot3')
+
+const stopBtnOne = document.querySelector('#stop1')
+const stopBtnTwo = document.querySelector('#stop2')
+const stopBtnThree = document.querySelector('#stop3')
+
+const startBtn = document.querySelector('#start-btn')
+const playBtn = document.querySelector('#play-btn')
 
 /*---- event listeners ----*/
 //needs an event listener for 3 buttons for the 3 slot positions
