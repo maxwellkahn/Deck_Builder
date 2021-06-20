@@ -56,9 +56,13 @@ const playBtn = document.querySelector('#play-btn')
 
 /*---- event listeners ----*/
 //needs an event listener for 3 buttons for the 3 slot positions
+document.querySelector('#stop1').addEventListener('click', slotOne)
+document.querySelector('#stop2').addEventListener('click', slotT
+document.querySelector('#stop3').addEventListener('click', slotThree)
 //needs an event listenter for the start button
+document.querySelector('#start-here').addEventListener('click', startGame)
 //needs an event listener for the play button
-
+document.querySelector('#play').addEventListener('click', playGame)
 
 
 /*---- functions ----*/
