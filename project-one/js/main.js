@@ -43,7 +43,7 @@ const slotSymbols = {
     }
 }
 /*---- app's state (variables) ----*/
-let score, result, state
+let score, result
 
 /*---- cached element references ----*/
 const startBtn = document.querySelector('#startHere')
@@ -55,6 +55,7 @@ const stopBtn = document.querySelector('#stopBtn')
 const gameSlotOne = document.querySelector('#slot1')
 const gameSlotTwo = document.querySelector('#slot2')
 const gameslotThree = document.querySelector('#slot3')
+
 // these will be used when they are created by the 'playGame' function
 const StopBtn = document.querySelector('#stopButton')
 // const stopBtnOne = document.querySelector('#stop1')
@@ -66,8 +67,6 @@ const scoreBoard = document.querySelector('#score')
 /*---- event listeners ----*/
 //needs an event listenter for the start button
 startBtn.addEventListener('click', initialize)
-//needs an event listener for 3 buttons for the 3 slot positions
-//these only come up after 'playGame' function is currently running
 // document.querySelector('#stop1').addEventListener('click', stopSpinning)
 // document.querySelector('#stop2').addEventListener('click', stopSpinning)
 // document.querySelector('#stop3').addEventListener('click', stopSpinning)
@@ -80,7 +79,7 @@ document.querySelector('#play').addEventListener('click', playGame)
 function initialize() {
     //what I need to start the game
     score = {
-        player: 10
+        player: 20
     }
     
     result = {
@@ -94,46 +93,17 @@ function initialize() {
     render()
 }
 
-// removed in favor of .removeEventListener()
-// function deleteStart() {
-//     // deletes start button, can only be renabled when score goes below 0 (if score > 0)
-//     startBtn.parentNode.removeChild(startBtn)
-// }
-
-// function makePlayBtn() {
-//     // creates play button to enable game start
-//     let playBtnEl = document.createElement('button');
-//     playBtnEl.textContent = 'Play';
-//     playBtnEl.setAttribute('id', 'playBtn');
-//     gameButtons.appendChild(playBtnEl);
-//     playBtn.addEventListener('click', playGame)
-// }
-
-// removed in favor of .removeEventListener()
-// function deletePlayBtn(){
-//     // removes play button so it cannot be repetedly pressed
-//     let playBtn = document.querySelector('#playBtn')
-//     playBtnEl.parentNode.removeChild(playBtn)
-// }
-
 function playGame() {
-    //sets slot state to 'spinning' & allows stop buttons to be pressed
-    let playBtn = document.querySelector('#playBtn');
+    //sets starts game, turns on the stop button
     playBtn.removeEventListener('click', playGame);
-    score.player--; 
+    score.player-- 
     stopBtn.addEventListener('click', stopSpinning)
-    // let gameBtnEl = document.createElement('button');
-    // gameBtnEl.textContent = 'Stop';
-    // gameBtnEl.setAttribute('id', 'stopButton');
-    // gameButtons.appendChild(gameBtnEl)
-    // stopBtn.addEventListener('click', stopSpinning)
     render()
 // need to create THREE stop buttons
 
     // gameSlotOne.style.backgroundImage = `url(${slotSymbols[spinning.slotOne].imgUrl})`
     // gameSlotTwo.style.backgroundImage = `url(${slotSymbols[spinning.slotTwo].imgUrl})`
     // gameslotThree.style.backgroundImage = `url(${slotSymbols[spinning.slotThree].imgUrl})`
-
 }
 
 function getRandomIdx() {
@@ -150,19 +120,23 @@ function stopSpinning() {
     checkSlots()
 } 
 
-
-// function removeBtn() {
-//     let el = document.getElementById('buttons');
-//     buttons.parentNode.removeChild()
-// }
-
 function checkSlots() {
     //to see if any points are awarded
-    stopButton.removeEventListener('click', stopSpinning)
+    stopBtn.removeEventListener('click', stopSpinning)
     if (result.gameSlotOne === result.gameSlotTwo && result.gameSlotOne === result.gameslotThree) {
         score.player += 50
-    } else alert('try again!');
-    playBtn.addEventListener('click', playGame)
+        alert('big winner!')
+        render()
+        playGame()
+    } else if (score.player < '1'){
+        alert('good game!')
+        playBtn.removeEventListener('click', playGame)
+        stopBtn.removeEventListener('click', stopSpinning)
+        startBtn.addEventListener('click', initialize)
+    } else {
+        // alert('try again!');
+    playGame()
+    }
 }
 
 function render() {
