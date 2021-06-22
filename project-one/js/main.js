@@ -43,32 +43,31 @@ const slotSymbols = {
     }
 }
 /*---- app's state (variables) ----*/
-let score, result, 
-//state
+let score, result, state
 
 /*---- cached element references ----*/
-const startBtn = document.querySelector('#start-btn')
+const startBtn = document.querySelector('#startHere')
 
 const gameButtons = document.querySelector('#buttons')
-const gameSlotOne = document.querySelector('#slot1')
-const gameSlotTwo = document.querySelector('#slot2')
-const gameslotThree = document.querySelector('#slot3')
+// const gameSlotOne =
+// const gameSlotTwo = 
+// const gameslotThree = 
 // these will be used when they are created by the 'playGame' function
 const stopBtnOne = document.querySelector('#stop1')
 const stopBtnTwo = document.querySelector('#stop2')
 const stopBtnThree = document.querySelector('#stop3')
 
-// const playBtn = document.querySelector('#play-btn')
-const scoreBoard = document.getElementById('score-board h3')
+const scoreBoard = document.querySelector('#score')
 
 /*---- event listeners ----*/
-//needs an event listener for 3 buttons for the 3 slot positions
-// these only come up after 'playGame' function is currently running
-document.querySelector('#stop1').addEventListener('click', stopSpinning)
-document.querySelector('#stop2').addEventListener('click', stopSpinning)
-document.querySelector('#stop3').addEventListener('click', stopSpinning)
 //needs an event listenter for the start button
 startBtn.addEventListener('click', initialize)
+//needs an event listener for 3 buttons for the 3 slot positions
+//these only come up after 'playGame' function is currently running
+// document.querySelector('#stop1').addEventListener('click', stopSpinning)
+// document.querySelector('#stop2').addEventListener('click', stopSpinning)
+// document.querySelector('#stop3').addEventListener('click', stopSpinning)
+
 //needs an event listener for the play button
 document.querySelector('#play').addEventListener('click', playGame)
 
@@ -79,23 +78,40 @@ function initialize() {
     score = {
         player: 10
     }
-
+    
     result = {
-            slotOne: 'insertCoin',
-            slotTwo: 'insertCoin',
-            slotThree: 'insertCoin'
+        slotOne: 'insertCoin',
+        slotTwo: 'insertCoin',
+        slotThree: 'insertCoin'
     }
-
+    
+    deleteStart()
+    makePlayBtn()
     render()
 }
-
+function deleteStart() {
+    startBtn.parentNode.removeChild(startBtn)
+}
+function makePlayBtn() {
+    let playBtnEl = document.createElement('button');
+    playBtnEl.textContent = 'Play';
+    playBtnEl.setAttribute('id', 'playBtn');
+    gameButtons.appendChild(playBtnEl);
+    playBtn.addEventListener('click', playGame)
+}
 function playGame() {
     //sets slot state to 'spinning' & allows stop buttons to be pressed
-    score--; 
-    gameButtons.parentNode.appendChild('#stop1', '#stop2', '#stop3'),
+    player--; 
+    let gameBtnEl = document.createElement('button');
+    gameBtnEl.textContent = 'Stop';
+    gameBtnEl.setAttribute('id', 'stopButton');
+    gameButtons.appendChild(gameBtnEl)
+// need to create THREE stop buttons
+
     gameSlotOne.style.backgroundImage = `url(${slotSymbols[spinning.slotOne].imgUrl})`
     gameSlotTwo.style.backgroundImage = `url(${slotSymbols[spinning.slotTwo].imgUrl})`
     gameslotThree.style.backgroundImage = `url(${slotSymbols[spinning.slotThree].imgUrl})`
+    render()
 
 }
 
@@ -104,20 +120,17 @@ function getRandomIdx() {
     //used to generate a number that will corespond with slot symbols
 }
 
-function stopSpinning() {
-    //changes the state of slot from 'spinning' to 'not spinning'
-    result.slots = lookUp[getRandomIdx()]
-    removeBtn()
-    if ('#buttons' === 'stopSpinning') {
-        checkSlots()
-    } 
+// function stopSpinning() {
+//     //changes the state of slot from 'spinning' to 'not spinning'
+//     result.slots = lookUp[getRandomIdx()]
+//     removeBtn()
+// } 
 
-}
 
-function removeBtn() {
-    let el = document.getElementById('buttons');
-    buttons.parentNode.removeChild()
-}
+// function removeBtn() {
+//     let el = document.getElementById('buttons');
+//     buttons.parentNode.removeChild()
+// }
 
 function checkSlots() {
     //to see if any points are awarded
