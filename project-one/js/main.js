@@ -101,17 +101,17 @@ function makePlayBtn() {
 }
 function playGame() {
     //sets slot state to 'spinning' & allows stop buttons to be pressed
-    player--; 
+    score.player--; 
     let gameBtnEl = document.createElement('button');
     gameBtnEl.textContent = 'Stop';
     gameBtnEl.setAttribute('id', 'stopButton');
     gameButtons.appendChild(gameBtnEl)
+    render()
 // need to create THREE stop buttons
 
     gameSlotOne.style.backgroundImage = `url(${slotSymbols[spinning.slotOne].imgUrl})`
     gameSlotTwo.style.backgroundImage = `url(${slotSymbols[spinning.slotTwo].imgUrl})`
     gameslotThree.style.backgroundImage = `url(${slotSymbols[spinning.slotThree].imgUrl})`
-    render()
 
 }
 
