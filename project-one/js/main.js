@@ -37,6 +37,9 @@ const slotSymbols = {
     seven: {
         imgUrl: 'imgs/seven.png'
 
+    },
+    spinning: {
+        imgUrl: 'imgs/spinning.png'
     }
 }
 /*---- app's state (variables) ----*/
@@ -44,24 +47,28 @@ let score, result,
 //state
 
 /*---- cached element references ----*/
+const startBtn = document.querySelector('#start-btn')
+
+const gameButtons = document.querySelector('#buttons')
 const gameSlotOne = document.querySelector('#slot1')
 const gameSlotTwo = document.querySelector('#slot2')
 const gameslotThree = document.querySelector('#slot3')
-
+// these will be used when they are created by the 'playGame' function
 const stopBtnOne = document.querySelector('#stop1')
 const stopBtnTwo = document.querySelector('#stop2')
 const stopBtnThree = document.querySelector('#stop3')
 
-const startBtn = document.querySelector('#start-btn')
-const playBtn = document.querySelector('#play-btn')
+// const playBtn = document.querySelector('#play-btn')
+const scoreBoard = document.getElementById('score-board h3')
 
 /*---- event listeners ----*/
 //needs an event listener for 3 buttons for the 3 slot positions
+// these only come up after 'playGame' function is currently running
 document.querySelector('#stop1').addEventListener('click', stopSpinning)
 document.querySelector('#stop2').addEventListener('click', stopSpinning)
 document.querySelector('#stop3').addEventListener('click', stopSpinning)
 //needs an event listenter for the start button
-document.querySelector('#start-here').addEventListener('click', initialize)
+startBtn.addEventListener('click', initialize)
 //needs an event listener for the play button
 document.querySelector('#play').addEventListener('click', playGame)
 
@@ -74,11 +81,9 @@ function initialize() {
     }
 
     result = {
-        slots {
-            slot1: 'insertCoin'
-            slot2: 'insertCoin'
-            slot3: 'insertCoin'
-        }
+            slotOne: 'insertCoin',
+            slotTwo: 'insertCoin',
+            slotThree: 'insertCoin'
     }
 
     render()
@@ -87,6 +92,10 @@ function initialize() {
 function playGame() {
     //sets slot state to 'spinning' & allows stop buttons to be pressed
     score--; 
+    gameButtons.parentNode.appendChild('#stop1', '#stop2', '#stop3'),
+    gameSlotOne.style.backgroundImage = `url(${slotSymbols[spinning.slotOne].imgUrl})`
+    gameSlotTwo.style.backgroundImage = `url(${slotSymbols[spinning.slotTwo].imgUrl})`
+    gameslotThree.style.backgroundImage = `url(${slotSymbols[spinning.slotThree].imgUrl})`
 
 }
 
@@ -98,10 +107,16 @@ function getRandomIdx() {
 function stopSpinning() {
     //changes the state of slot from 'spinning' to 'not spinning'
     result.slots = lookUp[getRandomIdx()]
+    removeBtn()
     if ('#buttons' === 'stopSpinning') {
         checkSlots()
-    }
+    } 
 
+}
+
+function removeBtn() {
+    let el = document.getElementById('buttons');
+    buttons.parentNode.removeChild()
 }
 
 function checkSlots() {
@@ -110,7 +125,10 @@ function checkSlots() {
 
 function render() {
     //whenever game state is changed to render app state
-    gameSlotOne.style.backgroundImage = `url(${slotSymbols[result.slots].imgUrl})`
-    gameSlotTwo.style.backgroundImage = `url(${slotSymbols[result.slots].imgUrl})`
-    gameSlotThree.style.backgroundImage = `url(${slotSymbols[result.slots].imgUrl})`
+    scoreBoard.textContent = score.player
+
+    gameSlotOne.style.backgroundImage = `url(${slotSymbols[result.slotOne].imgUrl})`
+    gameSlotTwo.style.backgroundImage = `url(${slotSymbols[result.slotTwo].imgUrl})`
+    gameSlotThree.style.backgroundImage = `url(${slotSymbols[result.slotThree].imgUrl})`
 }
+
