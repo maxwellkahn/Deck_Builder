@@ -98,9 +98,9 @@ function playGame() {
     playBtn.removeEventListener('click', playGame);
     score.player-- 
     stopBtn.addEventListener('click', stopSpinning)
+    // need to create THREE stop buttons
+    
     render()
-// need to create THREE stop buttons
-
     // gameSlotOne.style.backgroundImage = `url(${slotSymbols[spinning.slotOne].imgUrl})`
     // gameSlotTwo.style.backgroundImage = `url(${slotSymbols[spinning.slotTwo].imgUrl})`
     // gameslotThree.style.backgroundImage = `url(${slotSymbols[spinning.slotThree].imgUrl})`
@@ -130,8 +130,8 @@ function checkSlots() {
         playGame()
     } else if (score.player < '1'){
         alert('good game!')
-        playBtn.removeEventListener('click', playGame)
-        stopBtn.removeEventListener('click', stopSpinning)
+        // playBtn.removeEventListener('click', playGame)
+        // stopBtn.removeEventListener('click', stopSpinning)
         startBtn.addEventListener('click', initialize)
     } else {
         // alert('try again!');
