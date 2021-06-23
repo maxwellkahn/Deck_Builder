@@ -54,7 +54,7 @@ const stopBtn = document.querySelector('#stopBtn')
 
 const gameSlotOne = document.querySelector('#slot1')
 const gameSlotTwo = document.querySelector('#slot2')
-const gameslotThree = document.querySelector('#slot3')
+const gameSlotThree = document.querySelector('#slot3')
 
 // these will be used when they are created by the 'playGame' function
 const StopBtn = document.querySelector('#stopButton')
@@ -82,28 +82,30 @@ function initialize() {
         player: 20
     }
     
+    
     result = {
         slotOne: 'insertCoin',
         slotTwo: 'insertCoin',
         slotThree: 'insertCoin'
     }
-    
     startBtn.removeEventListener('click', initialize)
     playBtn.addEventListener('click', playGame)
+    playBtn.disabled = false
     render()
 }
 
 function playGame() {
     //sets starts game, turns on the stop button
-    playBtn.removeEventListener('click', playGame);
+    // playBtn.removeEventListener('click', playGame);
+    playBtn.disabled = true
     score.player-- 
     stopBtn.addEventListener('click', stopSpinning)
     // need to create THREE stop buttons
-    
     render()
-    // gameSlotOne.style.backgroundImage = `url(${slotSymbols[spinning.slotOne].imgUrl})`
-    // gameSlotTwo.style.backgroundImage = `url(${slotSymbols[spinning.slotTwo].imgUrl})`
-    // gameslotThree.style.backgroundImage = `url(${slotSymbols[spinning.slotThree].imgUrl})`
+    
+    gameSlotOne.style.backgroundImage = `url(${slotSymbols.spinning.imgUrl})`
+    gameSlotTwo.style.backgroundImage = `url(${slotSymbols.spinning.imgUrl})`
+    gameSlotThree.style.backgroundImage = `url(${slotSymbols.spinning.imgUrl})`
 }
 
 function getRandomIdx() {
@@ -115,6 +117,9 @@ function stopSpinning() {
     result.gameSlotOne = lookUp[getRandomIdx()]
     result.gameSlotTwo = lookUp[getRandomIdx()]
     result.gameslotThree = lookUp[getRandomIdx()]
+    gameSlotOne.style.backgroundImage = `url(${slotSymbols[result.gameSlotOne].imgUrl})`
+    gameSlotTwo.style.backgroundImage = `url(${slotSymbols[result.gameSlotTwo].imgUrl})`
+    gameSlotThree.style.backgroundImage = `url(${slotSymbols[result.gameSlotThree].imgUrl})`
     render()
     console.log(result.gameSlotOne, result.gameSlotTwo, result.gameslotThree)
     checkSlots()
@@ -143,8 +148,8 @@ function render() {
     //whenever game state is changed to render app state
     scoreBoard.textContent = score.player
 
-    // gameSlotOne.style.backgroundImage = `url(${slotSymbols[result.slotOne].imgUrl})`
-    // gameSlotTwo.style.backgroundImage = `url(${slotSymbols[result.slotTwo].imgUrl})`
-    // gameSlotThree.style.backgroundImage = `url(${slotSymbols[result.slotThree].imgUrl})`
+    // gameSlotOne.style.backgroundImage = `url(${slotSymbols[result.gameSlotOne].imgUrl})`
+    // gameSlotTwo.style.backgroundImage = `url(${slotSymbols[result.gameSlotTwo].imgUrl})`
+    // gameSlotThree.style.backgroundImage = `url(${slotSymbols[result.gameSlotThree].imgUrl})`
 }
 

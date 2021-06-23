@@ -2,3 +2,42 @@
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+#game-board {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 600px;
+    width: 600px;
+}
+
+#slot-machine {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    width: 500px;
+
+}
+
+#s1, #s2, #s3 {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    height: 100px;
+    width: 100px;
+    background-size: contain;
+    background-image: none;
+}
