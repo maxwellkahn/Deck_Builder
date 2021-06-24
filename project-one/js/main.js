@@ -44,6 +44,7 @@ const gameSlotTwo = document.querySelector('#slot2')
 const gameSlotThree = document.querySelector('#slot3')
 const StopBtn = document.querySelector('#stopButton')
 const scoreBoard = document.querySelector('#score')
+const alert = document.querySelector('#alerts')
 
 document.querySelector('#play').addEventListener('click', playGame)
 
@@ -94,10 +95,10 @@ function checkSlots() {
     stopBtn.disabled = true
     if (result.gameSlotOne === result.gameSlotTwo && result.gameSlotOne === result.gameSlotThree) {
         score.player += 50
-        alert('big winner!')
+        alert.innerText = 'Big winner!'
         playBtn.disabled = false
-    } else if (score.player < '1'){
-        alert('good game!')
+    } else if (score.player < '1') {
+        alert.innerText = 'Good game!'
         startBtn.disabled = false
     } else {
         playBtn.disabled = false
@@ -109,5 +110,6 @@ function render() {
     gameSlotOne.style.backgroundImage = `url(${slotSymbols[result.gameSlotOne].imgUrl})`
     gameSlotTwo.style.backgroundImage = `url(${slotSymbols[result.gameSlotTwo].imgUrl})`
     gameSlotThree.style.backgroundImage = `url(${slotSymbols[result.gameSlotThree].imgUrl})`
+    alert.innerText = ''
 }
 

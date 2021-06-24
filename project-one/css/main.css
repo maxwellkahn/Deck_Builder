@@ -29,6 +29,7 @@ main {
     display: block;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: #9e9898;
     border: 3px solid #b35950;
     color: #f8f8f2;
@@ -80,4 +81,13 @@ main {
     width: 100px;
     background-size: contain;
     background-image: none;
+}
+
+#alerts {
+    background-color: #DBA55E;
+    color: #5C494D;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+
 }
