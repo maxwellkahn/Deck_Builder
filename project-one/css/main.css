@@ -4,11 +4,13 @@
 }
 body{
     background-color: #f8f8f2;
+    margin: 0;
 }
 
 h1 {
     color: #5C494D;
     background-color: #DBA55E;
+    margin-top: 0;
     padding: 20px;
     text-align: center;
 }
@@ -23,6 +25,7 @@ main {
 }
 
 #score-board {
+    position: relative;
     display: block;
     justify-content: center;
     align-items: center;
