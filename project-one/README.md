@@ -1,4 +1,6 @@
 **Javascript Slot Machine Game**
+spin the slot machine and see if you'll win big!
+
 
 **Screenshots**
 

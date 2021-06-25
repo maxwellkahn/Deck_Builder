@@ -54,7 +54,7 @@ stopBtn.addEventListener('click', stopSpinning)
 
 function initialize() {
     score = {
-        player: 20
+        player: 10
     }
     result = {
         gameSlotOne: 'insertCoin',
