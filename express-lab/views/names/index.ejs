@@ -1,0 +1,12 @@
+<body>
+    <h1>Names</h1>
+    <ul>
+        <% names.forEach(function(t) { %>
+            <li>
+                <%= t.student %> 
+                -
+                <%= t.present ? 'attended' : 'did not attend' %> 
+            </li>
+        <% }) %> 
+    </ul>
+</body>
