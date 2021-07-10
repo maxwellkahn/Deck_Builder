@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Landing Page</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Home Page</h1>
+    <div>
+      <form action="/" method="GET">
+      <input type="text" name="cardName" placeholder="Search a Card">
+      <button type="submit">Search</button>
+      </form>
+    </div>
+    <div class="display">
+      <% if (cardData) { %> 
+        <%= cardData %>
+      <% } else { %>
+        <h3>search a card</h3>
+      <% } %>
+
+
+    </div>
   </body>
 </html>
