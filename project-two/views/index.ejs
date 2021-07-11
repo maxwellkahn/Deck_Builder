@@ -8,13 +8,15 @@
     <h1>Home Page</h1>
     <div>
       <form action="/" method="GET">
-      <input type="text" name="cardName" placeholder="Search a Card">
+      <input type="text" name="cardname" placeholder="Search a Card">
       <button type="submit">Search</button>
       </form>
     </div>
     <div class="display">
       <% if (cardData) { %> 
-        <%= cardData %>
+        <%= cardData.name %>
+        <br />
+        <img src="<%= cardData.image_uris.small %>" alt="<%= cardData.name %>">
       <% } else { %>
         <h3>search a card</h3>
       <% } %>

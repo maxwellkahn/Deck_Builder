@@ -1,21 +1,27 @@
-const { name } = require('ejs');
 const express = require('express');
 const router = express.Router();
 const request = require('request');
 
-// const rootURL = 'https://api.scryfall.com/';
-const rootURL = 'https://api.scryfall.com/cards/random/?q=in%3Aleg'
+const rootURL = 'https://api.scryfall.com/';
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  const cardData = req.query.body;
-  request(
-    `${rootURL}`,
-    function(err, response, body) {
-      res.render('index', {cardData: object.name});
-    }
-  );
-  // console.log('cardname: ', req.query.cardName)
+  const cardName = req.query.cardname;
+  if(!cardName) {
+    return res.render('index', { cardData: null });
+  }
+  const options = {
+    url: `${rootURL}cards/named?fuzzy=${cardName}`
+  }
+  request(options, function(err, response, body) {
+    const cardData = JSON.parse(body);
+    // console.log(cardData)
+    options.url = cardData.name;
+
+    request(options, function (err, response, body) {
+      console.log(cardData.name);
+      res.render('index', {cardData});
+    });
+  });
 });
 
 module.exports = router;
