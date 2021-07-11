@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const deckCtrl = require('../controllers/decks');
+const decksCtrl = require('../controllers/decks');
 
 /* GET users listing. */
-router.get('/', deckCtrl.index);
+router.get('/', decksCtrl.index);
+router.post('/', decksCtrl.create)
 
 module.exports = router;
