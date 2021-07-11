@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
     options.url = cardData.name;
 
     request(options, function (err, response, body) {
-      console.log(cardData.name);
+      // console.log(cardData.name);
       res.render('index', {cardData});
     });
   });
