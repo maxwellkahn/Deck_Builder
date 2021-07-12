@@ -1,10 +1,24 @@
 <%- include('../partials/header') %>
 
-<h2>List of Decks</h2>
-<ul>
-  <% for (let i = 0; i < decks.length; i++) { %>
-  <li><a href="/decks/<%= decks[i]._id"> <%=decks[i].name %> </a></li>
-  <% } %>
-</ul>
+<% if (decks.length > 0) { %> 
+  <table>
+      <thead>
+          <tr>
+              <th>Deck Name</th>
+              <th>Author</th>
+          </tr>   
+      </thead>
+      <tbody>
+          <% decks.forEach(function(deck) { %> 
+          <tr>
+              <td><a href="/decks/<% deck.id %>"></a><%= deck.name %> </td>
+              <td><%= deck.author %> </td>
+          </tr>
+          <% }); %> 
+      </tbody>
+  </table>
+  <% } else { %>
+      <h5>No Decks Yet</h5> 
+      <% } %> 
 
 <%- include('../partials/footer') %>

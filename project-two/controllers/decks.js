@@ -2,13 +2,17 @@ const Card = require("../models/card");
 const Deck = require("../models/deck");
 
 module.exports = {
-  new: newCard,
+  new: newDeck,
   create,
   index,
   show,
 };
 
-async function newCard(req, res) {}
+function newDeck(req, res) {
+    res.render('decks/new', {
+        cardData: null,
+    })    
+}
 
 async function create(req, res) {
   try {
@@ -24,8 +28,8 @@ async function create(req, res) {
 
 async function index(req, res) {
   try {
-    const foundDecks = await Deck.find();
-    res.render("index.ejs", {
+    const foundDecks = await Deck.find({});
+    res.render("decks/index.ejs", {
       decks: foundDecks,
     });
   } catch (err) {
@@ -41,4 +45,11 @@ async function show(req, res) {
   } catch (err) {
     res.status(404);
   }
+}
+
+
+async function searchCards(req, res) {
+    // create variable for serchable cards and set equal to postman query
+    // use query from user to match searchable cards
+    // render match
 }

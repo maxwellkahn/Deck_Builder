@@ -1,22 +1,26 @@
 <%- include('../partials/header') %> 
 <h1>Build a New Deck</h1>
 <div>
-    <form action="/" method="Get">
+    <form action="/" method="GET">
         <input type="text" name="cardname" placeholder="Search a Card">
         <button type="submit">Search</button>
     </form>
 </div>
-<div class="display">
+<div class="cardSearch">
     <% if (cardData) { %>
         <%= cardData.name %>
         <br />
         <img src="<%= cardData.image_uris.small %>" alt="<%= cardData.name %>">
-        <button type="submit">Add to Deck</button>
+        <button type="submit" name="addNewCard">Add to Deck</button>
     <% } else { %>
         <h3>search a card</h3>
     <% } %>
 </div>
-
+<div class="cardDeck">
+    <form action="/decks/:id" method="POST">
+    
+    </form>
+</div>
 
 
 
