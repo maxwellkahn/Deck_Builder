@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const deckSchema = new Schema({
-    name: {
+    deckName: {
         type: String,
         required: true,
     },
-    author: {
+    deckAuthor: {
         type: String,
         required: true,
         default: 'none provided',
     },
-    cards: [ 
+    cards: [
         // define a subdocuments either a list of objects or a list of card schema
     ],
 })
