@@ -1,16 +1,16 @@
 <%- include('../partials/header') %> 
 <h1>Build a New Deck</h1>
 <div>
-    <form action="/new" method="GET">
-        <input type="text" name="cardname" placeholder="Search a Card">
+    <form action="/decks/new" method="POST">
+        <input type="text" name="card" placeholder="Search a Card">
         <button type="submit">Search</button>
     </form>
 </div>
-<div class="cardSearch">
-    <% if (cardData) { %>
-        <%= cardData.name %>
+<div class="search">
+    <% if (cardSearch) { %>
+        <%= cardSearch.name %>
         <br />
-        <img src="<%= cardData.image_uris.small %>" alt="<%= cardData.name %>">
+        <img src="<%= cardSearch.image_uris.small %>" alt="<%= cardSearch.name %>">
         <button type="submit" name="AddNewCard">Add to Deck</button>
     <% } else { %>
         <h3>search a card</h3>
@@ -18,8 +18,8 @@
 </div>
 <div class="cardDeck">
     <form action="/decks/:id" method="POST">
-        <input type="text" name="deckName" value="Deck Name" required>
-        <input type="text" name="deckAuthor" value="Author" required>
+        <input type="text" name="deckName" placeholder="Deck Name" required>
+        <input type="text" name="deckAuthor" placeholder="Author" required>
         <input type="submit" value="Add New Deck">
     </form>
 </div>

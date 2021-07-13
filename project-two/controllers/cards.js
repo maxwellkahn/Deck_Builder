@@ -9,35 +9,33 @@ module.exports = {
 };
 
 function findCard(req, res) {
-  const cardName = req.query.cardname;
+  const cardName = req.body;
+  console.log(req.body)
   const options = {
-    url: `${rootURL}cards/named?fuzzy=${cardName}`,
-  };
+      url: `${rootURL}cards/named?fuzzy=${cardName}`,
+    };
   request(options, function (err, response, body) {
-    const cardData = JSON.parse(body);
-    console.log(cardData);
-    options.url = cardData.name;
+    const cardSearch = JSON.parse(body);
+    options.url = cardSearch.name;
 
     request(options, function (err, response, body) {
-      // console.log(cardData.name);
-      res.render("decks/new", { cardData });
+      res.redirect("/decks/new", { cardSearch });
     });
   });
 }
 
 function randomCard(req, res) {
-  const randomCard = req.query;
   const options = {
-    urel: `${rootURL}cards/random/?q=in%3Aleg`,
+    url: `${rootURL}cards/random/?q=in%3Aleg`,
   };
   request(options, function (err, response, body) {
     const cardData = JSON.parse(body);
-    console.log(cardData);
+    // console.log(cardData);
     options.url = cardData.name;
 
     request(options, function (err, response, body) {
       console.log(cardData.name);
-      res.render("index", { cardData });
+      res.render('index', { cardData });
     });
   });
 }

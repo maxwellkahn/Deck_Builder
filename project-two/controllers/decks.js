@@ -10,7 +10,7 @@ module.exports = {
 
 function newDeck(req, res) {
     res.render('decks/new', {
-        cardData: null,
+        cardSearch: null,
     })    
 }
 
