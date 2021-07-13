@@ -24,3 +24,20 @@ function searchCard(req, res) {
         });
     });
 }
+
+function randomCard(req, res) {
+    const randomCard = req.query
+    const options = {
+        urel: `${rootURL}cards/random/?q=in%3Aleg`
+    }
+    request(options, function(err, response, body) {
+        const cardData = JSON.parse(body)
+        console.log(cardData)
+        options.url = cardData.name;
+
+        request(options, function (err, response, body) {
+            console.log(cardData.name);
+            res.render('index', {cardData});
+        });
+    });
+}
