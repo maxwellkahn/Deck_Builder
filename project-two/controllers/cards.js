@@ -1,43 +1,43 @@
-const request = require('request');
+const request = require("request");
 const Card = require("../models/card");
 
-const rootURL = 'https://api.scryfall.com/';
+const rootURL = "https://api.scryfall.com/";
 
-module.export = {
-    searchCard,
-    randomCard,
+module.exports = {
+  findCard,
+  randomCard,
 };
 
-function searchCard(req, res) {
-    const cardName = req.query.cardname;
-    const options = {
-        url: `${rootURL}cards/named?fuzzy=${cardName}`
-    };
-    request(options, function(err, response, body) {
-        const cardData = JSON.parse(body);
-        console.log(cardData)
-        options.url = cardData.name;
+function findCard(req, res) {
+  const cardName = req.query.cardname;
+  const options = {
+    url: `${rootURL}cards/named?fuzzy=${cardName}`,
+  };
+  request(options, function (err, response, body) {
+    const cardData = JSON.parse(body);
+    console.log(cardData);
+    options.url = cardData.name;
 
-        request(options, function (err, response, body) {
-            // console.log(cardData.name);
-            res.render('decks/new', { cardData } );
-        });
+    request(options, function (err, response, body) {
+      // console.log(cardData.name);
+      res.render("decks/new", { cardData });
     });
+  });
 }
 
 function randomCard(req, res) {
-    const randomCard = req.query
-    const options = {
-        urel: `${rootURL}cards/random/?q=in%3Aleg`
-    }
-    request(options, function(err, response, body) {
-        const cardData = JSON.parse(body)
-        console.log(cardData)
-        options.url = cardData.name;
+  const randomCard = req.query;
+  const options = {
+    urel: `${rootURL}cards/random/?q=in%3Aleg`,
+  };
+  request(options, function (err, response, body) {
+    const cardData = JSON.parse(body);
+    console.log(cardData);
+    options.url = cardData.name;
 
-        request(options, function (err, response, body) {
-            console.log(cardData.name);
-            res.render('index', {cardData});
-        });
+    request(options, function (err, response, body) {
+      console.log(cardData.name);
+      res.render("index", { cardData });
     });
+  });
 }

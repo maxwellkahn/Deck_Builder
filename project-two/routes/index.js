@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
+const cardsCtrl = require('../controllers/cards');
 
 const rootURL = 'https://api.scryfall.com/';
+
+// router.get('/', cardsCtrl.randomCard)
 
 router.get('/', function(req, res, next) {
   // const cardName = req.query.cardname;

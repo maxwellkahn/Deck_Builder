@@ -5,5 +5,7 @@ const cardsCtrl = require('../controllers/cards');
 
 const rootURL = 'https://api.scryfall.com/';
 
-router.get('/', cardsCtrl.searchCard)
+router.get('/', cardsCtrl.findCard)
 router.get('/', cardsCtrl.randomCard)
+
+module.exports = router;
