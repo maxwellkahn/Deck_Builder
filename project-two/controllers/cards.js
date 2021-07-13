@@ -3,7 +3,7 @@ const Card = require("../models/card");
 
 const rootURL = 'https://api.scryfall.com/';
 
-modules.export = {
+module.export = {
     searchCard,
     randomCard,
 };
@@ -20,7 +20,7 @@ function searchCard(req, res) {
 
         request(options, function (err, response, body) {
             // console.log(cardData.name);
-            res.render('decks/new' {cardData});
+            res.render('decks/new', { cardData } );
         });
     });
 }
