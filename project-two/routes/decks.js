@@ -9,5 +9,6 @@ router.get('/', decksCtrl.index);
 router.get('/new', decksCtrl.new);
 router.get('/:id', decksCtrl.show);
 router.post('/', decksCtrl.create);
+router.delete('/:id', decksCtrl.delete);
 
 module.exports = router;

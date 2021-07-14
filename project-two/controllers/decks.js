@@ -1,11 +1,15 @@
 const Card = require("../models/card");
 const Deck = require("../models/deck");
 
+const rootURL = "https://api.scryfall.com/";
+
 module.exports = {
   new: newDeck,
   create,
   index,
   show,
+  delete: deleteDeck,
+  searchCards,
 };
 
 function newDeck(req, res) {
@@ -29,7 +33,7 @@ async function create(req, res) {
 async function index(req, res) {
   try {
     const foundDecks = await Deck.find({});
-    res.render("decks/index.ejs", {
+    res.render("decks/index", {
       decks: foundDecks,
     });
   } catch (err) {
@@ -47,9 +51,11 @@ async function show(req, res) {
   }
 }
 
+function deleteDeck(req, res) {
+  Deck.deleteOne(req.params.id)
+  res.redirect('/decks')
+}
 
 async function searchCards(req, res) {
-    // create variable for serchable cards and set equal to postman query
-    // use query from user to match searchable cards
-    // render match
-}
+ 
+  }
