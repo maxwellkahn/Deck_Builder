@@ -11,8 +11,13 @@
       <tbody>
           <% decks.forEach(function(deck) { %> 
           <tr>
-              <td><a href="/decks/<% deck.id %>"></a><%= deck.name %> </td>
-              <td><%= deck.author %> </td>
+              <td><a href="/decks/<%= deck.id %>"><%= deck.deckName %> </a></td>
+              <td><%= deck.deckAuthor %> </td>
+              <td>
+                  <form action="/decks/<%= deck.id %>?_method=DELETE" method="POST">
+                    <button type="submit">X</button>
+                </form>
+              </td>
           </tr>
           <% }); %> 
       </tbody>

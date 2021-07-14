@@ -12,22 +12,13 @@ module.exports = {
 
 function findCard(req, res) {
   const cardName = req.body.card;
-//   console.log("THE CARD NAME: ", cardName)
   const options = {
       url: `${rootURL}cards/named?fuzzy=${cardName}`,
     };
-    // console.log("THE URL: ", options)
   request(options, function (err, response, body) {
-    // console.log("THE BODY: ", body)
     const cardSearch = JSON.parse(body);
-    // console.log("THE BODY: ", cardSearch)
-    // options.url = cardSearch.name;
-
     request(options, function (err, response, body) {
-      // console.log("THE BODY AGAIN: ", cardSearch)
-      // Line below is the issue with the "redirect", need to render decks/new
-      // as current it redirects to /cards/new
-      res.render("decks/new", { cardSearch });
+      res.render("decks/show", { cardSearch });
     });
   });
 }
@@ -38,9 +29,6 @@ function randomCard(req, res) {
   };
   request(options, function (err, response, body) {
     const cardData = JSON.parse(body);
-    // console.log(cardData);
-    // options.url = cardData.name;
-
     request(options, function (err, response, body) {
       console.log(cardData.name);
       res.render('index', { cardData });

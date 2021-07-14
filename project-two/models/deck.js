@@ -12,9 +12,10 @@ const deckSchema = new Schema({
         required: true,
         default: 'none provided',
     },
-    cards: [
-        // define a subdocuments either a list of objects or a list of card schema
-    ],
+    cards: [{
+        type: Schema.Types.ObjectId, 
+        ref:'Card',
+    }],
 })
 
 module.exports = mongoose.model('Deck', deckSchema)

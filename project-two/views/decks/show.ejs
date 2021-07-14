@@ -1,5 +1,52 @@
 <%- include('../partials/header') %> 
-
+<h1>Build your deck</h1>
+<div>
+    <form action="/cards/find" method="POST">
+        <input type="text" name="card" placeholder="Search a Card">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div class="search">
+    <% if (cardSearch) { %>
+        <%= cardSearch.name %>
+        <br />
+        <img src="<%= cardSearch.image_uris.small %>" alt="<%= cardSearch.name %>">
+        <form action="/cards/new" method="POST">
+            <input type="hidden" name="name" value="<%= cardSearch.name %>">
+            <input type="hidden" name="image_uri" value="<%= cardSearch.image_uris.small %>">
+            <button type="submit">Add to Deck</button>
+        </form>
+    <% } else { %>
+        <h3>search a card</h3>
+    <% } %>
+</div>
+<div>
+<% if deck.length > 0 { %>
+    <table>
+        <% cards.forEach(function(c) { %>
+        <thead>
+            <tr>
+                <th><%= c.name %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="<%= c.image_uris.small %>" alt="<%=c.name %>"></td>
+            </tr>
+        </tbody>
+        <% }); %>
+    </table>
+    <% } else { %>
+        <h5>No Cards Yet</h5> 
+    <% } %>
+</div>
+<div class="cardDeck">
+    <form action="/decks/<%=_id%>?_method=UPDATE" method="POST">
+        <input type="text" name="deckName" placeholder="Deck Name" required>
+        <input type="text" name="deckAuthor" placeholder="Author" required>
+        <input type="submit" value="Save Changes">
+    </form>
+</div>
 
 
 

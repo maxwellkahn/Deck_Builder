@@ -11,6 +11,10 @@
     <main>
         <nav>
             <a href="/">Home</a>
-            <a href="/decks/new">Add a Deck</a>
-            <a href="/decks/index">All Decks</a>
+            <form action="/decks" method="POST">
+                <input type="hidden" name="deckName" value="new deck">
+                <input type="hidden" name="deckAuthor" value="none provided">
+                <button type="submit">Add a Deck</button>
+            </form>
+            <a href="/decks">All Decks</a>
         </nav>

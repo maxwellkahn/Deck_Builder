@@ -4,26 +4,26 @@ const Deck = require("../models/deck");
 const rootURL = "https://api.scryfall.com/";
 
 module.exports = {
-  newDeck,
+  // newDeck,
   create,
   index,
   show,
+  update,
   delete: deleteDeck,
-  searchCards,
 };
 
-function newDeck(req, res) {
-    res.render('decks/new', {
-        cardSearch: null,
-    })    
-}
+// function newDeck(req, res) {
+//     res.render('decks/new', {
+//         cardSearch: null,
+//     })    
+// }
 
 async function create(req, res) {
   try {
     const deck = new Deck(req.body);
-    deck.save(function (err) {
-      if (err) return res.render("decks/new");
-      res.redirect("index");
+    console.log('NEW DECK: ', deck)
+    deck.save(function() {
+      res.redirect(`decks/show`);
     });
   } catch (err) {
     res.status(404);
@@ -33,7 +33,8 @@ async function create(req, res) {
 async function index(req, res) {
   try {
     const foundDecks = await Deck.find({});
-    res.render("index", {
+    // console.log('FOUND DECKS: ', foundDecks)
+    res.render("decks/index", {
       decks: foundDecks,
     });
   } catch (err) {
@@ -44,18 +45,24 @@ async function index(req, res) {
 async function show(req, res) {
   try {
     const foundDeck = await Deck.findById(req.params.id);
-    const foundCards = await Card.find({ deck: req.params.id });
-    res.render("decks/show", { deck: foundDeck, cards: foundCards });
+    const foundCards = await Card.findById(req.params.id)
+    // console.log('THE CARDS: ', foundCards)
+    .populate('Card') 
+      // console.log('THE CARDS AGAIN: ', foundCards)
+      res.render("decks/show", { deck: foundDeck, cards: foundCards }); 
   } catch (err) {
     res.status(404);
   }
 }
+function update(req, res) {
 
-function deleteDeck(req, res) {
-  Deck.deleteOne(req.params.id)
-  res.redirect('/decks')
 }
 
-async function searchCards(req, res) {
- 
+async function deleteDeck(req, res) {
+  try {
+    await Deck.findByIdAndDelete(req.params.id)
+    res.redirect('/decks');
+  } catch (err) {
+    res.status(404);
   }
+}
