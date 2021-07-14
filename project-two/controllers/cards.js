@@ -5,23 +5,23 @@ const Deck = require("../models/deck")
 const rootURL = "https://api.scryfall.com/";
 
 module.exports = {
-  findCard,
+  // findCard,
   randomCard,
   addCard,
 };
 
-function findCard(req, res) {
-  const cardName = req.body.card;
-  const options = {
-      url: `${rootURL}cards/named?fuzzy=${cardName}`,
-    };
-  request(options, function (err, response, body) {
-    const cardSearch = JSON.parse(body);
-    request(options, function (err, response, body) {
-      res.render("decks/show", { cardSearch });
-    });
-  });
-}
+// function findCard(req, res) {
+//   const cardName = req.body.card;
+//   const options = {
+//       url: `${rootURL}cards/named?fuzzy=${cardName}`,
+//     };
+//   request(options, function (err, response, body) {
+//     const cardSearch = JSON.parse(body);
+//     request(options, function (err, response, body) {
+//       res.render("decks/show", { cardSearch });
+//     });
+//   });
+// }
 
 function randomCard(req, res) {
   const options = {
@@ -38,13 +38,10 @@ function randomCard(req, res) {
 
 async function addCard(req, res) {
     try {
-      const card = new Card(req.body);
+      const card = await Card.create(req.body);
       console.log("NEW BODY: ", card)
       // Needs to Deck.cards.push
-      card.save(function (err) {
-            if (err) return res.render("decks/new");
-            res.redirect('decks/new');
-        });
+        res.redirect(`decks/${deck._id}`);
     } catch (err) {
         res.status(404);
     }
