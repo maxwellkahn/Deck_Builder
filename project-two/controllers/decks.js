@@ -4,7 +4,6 @@ const Deck = require("../models/deck");
 const rootURL = "https://api.scryfall.com/";
 
 module.exports = {
-  // newDeck,
   create,
   index,
   show,
@@ -12,19 +11,14 @@ module.exports = {
   delete: deleteDeck,
 };
 
-// function newDeck(req, res) {
-//     res.render('decks/new', {
-//         cardSearch: null,
-//     })    
-// }
-
 async function create(req, res) {
   try {
-    const deck = new Deck(req.body);
-    console.log('NEW DECK: ', deck)
-    deck.save(function() {
-      res.redirect(`decks/show`);
-    });
+    const deck = await Deck.create(req.body);
+    // console.log('NEW DECK: ', deck)
+    // deck.save(function() {
+      console.log('THE DECK:', deck)
+      res.redirect(`decks/${deck._id}`);
+    // });
   } catch (err) {
     res.status(404);
   }
@@ -33,7 +27,6 @@ async function create(req, res) {
 async function index(req, res) {
   try {
     const foundDecks = await Deck.find({});
-    // console.log('FOUND DECKS: ', foundDecks)
     res.render("decks/index", {
       decks: foundDecks,
     });
@@ -44,18 +37,24 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
-    const foundDeck = await Deck.findById(req.params.id);
-    const foundCards = await Card.findById(req.params.id)
+    const foundDeck = await Deck.findById(req.params.id)
+    // const foundCards = await Card.findById(req.params.id)
     // console.log('THE CARDS: ', foundCards)
-    .populate('Card') 
-      // console.log('THE CARDS AGAIN: ', foundCards)
-      res.render("decks/show", { deck: foundDeck, cards: foundCards }); 
+    .populate('cards'); 
+      console.log('found deck: ', foundDeck)
+      console.log('req.params.id ', req.params.id)
+      res.render("decks/show", { deck: foundDeck }); 
   } catch (err) {
     res.status(404);
   }
 }
-function update(req, res) {
-
+async function update(req, res) {
+  try {
+    deck.findByIdAndUpdate(req.params.body)
+    res.redirect('decks')
+  } catch (err) {
+    res.status(404);
+  }
 }
 
 async function deleteDeck(req, res) {

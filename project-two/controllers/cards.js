@@ -40,7 +40,6 @@ async function addCard(req, res) {
     try {
       const card = new Card(req.body);
       console.log("NEW BODY: ", card)
-      // WHAT DOES card.save actually do?
       // Needs to Deck.cards.push
       card.save(function (err) {
             if (err) return res.render("decks/new");
