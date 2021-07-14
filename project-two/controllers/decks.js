@@ -4,7 +4,7 @@ const Deck = require("../models/deck");
 const rootURL = "https://api.scryfall.com/";
 
 module.exports = {
-  new: newDeck,
+  newDeck,
   create,
   index,
   show,
@@ -23,7 +23,7 @@ async function create(req, res) {
     const deck = new Deck(req.body);
     deck.save(function (err) {
       if (err) return res.render("decks/new");
-      res.redirect("decks/index");
+      res.redirect("index");
     });
   } catch (err) {
     res.status(404);
@@ -33,7 +33,7 @@ async function create(req, res) {
 async function index(req, res) {
   try {
     const foundDecks = await Deck.find({});
-    res.render("decks/index", {
+    res.render("index", {
       decks: foundDecks,
     });
   } catch (err) {

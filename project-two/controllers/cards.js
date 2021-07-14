@@ -18,15 +18,16 @@ function findCard(req, res) {
     };
     // console.log("THE URL: ", options)
   request(options, function (err, response, body) {
+    // console.log("THE BODY: ", body)
     const cardSearch = JSON.parse(body);
     // console.log("THE BODY: ", cardSearch)
-    options.url = cardSearch.name;
+    // options.url = cardSearch.name;
 
     request(options, function (err, response, body) {
       // console.log("THE BODY AGAIN: ", cardSearch)
       // Line below is the issue with the "redirect", need to render decks/new
       // as current it redirects to /cards/new
-      res.redirect("/decks/new", { cardSearch });
+      res.render("decks/new", { cardSearch });
     });
   });
 }
@@ -38,7 +39,7 @@ function randomCard(req, res) {
   request(options, function (err, response, body) {
     const cardData = JSON.parse(body);
     // console.log(cardData);
-    options.url = cardData.name;
+    // options.url = cardData.name;
 
     request(options, function (err, response, body) {
       console.log(cardData.name);
@@ -49,8 +50,11 @@ function randomCard(req, res) {
 
 async function addCard(req, res) {
     try {
-        const card = new Card(req.body);
-        card.save(function (err) {
+      const card = new Card(req.body);
+      console.log("NEW BODY: ", card)
+      // WHAT DOES card.save actually do?
+      // Needs to Deck.cards.push
+      card.save(function (err) {
             if (err) return res.render("decks/new");
             res.redirect('decks/new');
         });
