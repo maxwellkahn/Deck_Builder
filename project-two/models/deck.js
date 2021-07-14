@@ -5,6 +5,7 @@ const deckSchema = new Schema({
     deckName: {
         type: String,
         required: true,
+        default: 'new deck'
     },
     deckAuthor: {
         type: String,
