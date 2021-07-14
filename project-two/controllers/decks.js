@@ -4,7 +4,7 @@ const Deck = require("../models/deck");
 const rootURL = "https://api.scryfall.com/";
 
 module.exports = {
-  findCard,
+  // findCard,
   create,
   index,
   show,
@@ -15,7 +15,6 @@ module.exports = {
 async function create(req, res) {
   try {
     const deck = await Deck.create(req.body);
-      // console.log('THE DECK:', deck)
       res.redirect(`decks/${deck._id}`);
   } catch (err) {
     res.status(404);
@@ -37,8 +36,8 @@ async function show(req, res) {
   try {
     const foundDeck = await Deck.findById(req.params.id)
     .populate('cards'); 
-      console.log('found deck: ', foundDeck)
-      console.log('req.params.id ', req.params.id)
+      // console.log('found deck: ', foundDeck)
+      // console.log('req.params.id ', req.params.id)
       res.render("decks/show", { deck: foundDeck, cardSearch: null, }); 
   } catch (err) {
     res.status(404);
@@ -47,10 +46,13 @@ async function show(req, res) {
 
 async function update(req, res) {
   try {
-    deck.findByIdAndUpdate(req.params.body)
-    res.redirect('decks')
+    const updateDeck = await Deck.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    console.log('THE UPDATE: ', req.body)
+    res.redirect('/decks/show', { deck: updateDeck, cardSearch: null,});
   } catch (err) {
-    res.status(404);
+    res.status(404).json(err);
   }
 }
 
@@ -63,19 +65,23 @@ async function deleteDeck(req, res) {
   }
 }
 
-async function findCard(req, res) {
-  try{
-  const foundDeck = await Deck.findById(req.params.id)
-  const cardName = req.body.card;
-  const options = {
-      url: `${rootURL}cards/named?fuzzy=${cardName}`,
-    };
-  request(options, function (err, response, body) {
-    const cardSearch = JSON.parse(body);
-    // request(options, function (err, response, body) {
-      res.render("decks/show", { cardSearch, deck: foundDeck});
-    });
-  } catch (err) {
-    res.send(404);
-  }
-}
+// async function findCard(req, res) {
+//   try{
+//   const foundDeck = await Deck.findById(req.params.id)
+//   const cardName = req.body.card;
+//   console.log('THE NAME: ', cardName)
+//   const options = {
+//       url: `${rootURL}cards/named?fuzzy=${cardName}`,
+//     };
+//     console.log('THE API URL: ', options.url)
+//   request(options, function (response, body) {
+//     const cardSearch = JSON.parse(body);
+//     console.log('THE CARD SEARCH ', cardSearch)
+//     // request(options, function (err, response, body) {
+//       res.render("decks/show", { cardSearch, deck: foundDeck});
+//     });
+//   } catch (err) {
+//     res.sendStatus(404);
+//   }
+// }
+

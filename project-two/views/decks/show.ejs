@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 <h1>Your deck</h1>
 <div>
-  <form action="/decks/<%=deck.id%>/find" method="POST">
+  <form action="/decks/<%=deck.id%>" method="POST">
     <input type="text" name="card" placeholder="Search a Card" />
     <button type="submit">Search</button>
   </form>
@@ -43,7 +43,7 @@
   <% } else { %>
   <h5>No Cards Yet</h5>
   <% } %>
-  <form action="/decks/<%=deck.id%>?_method=UPDATE" method="POST">
+  <form action="/decks/<%= deck._id %>?_method=UPDATE" method="POST">
     <input type="text" name="deckName" placeholder="Deck Name" required />
     <input type="text" name="deckAuthor" placeholder="Author" required />
     <input type="submit" value="Save Changes" />
