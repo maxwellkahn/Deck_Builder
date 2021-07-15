@@ -9,7 +9,10 @@ This app is a personal take on an MTG deck building website. By using this app, 
 <img src="https://i.imgur.com/il8BTrl.png">
 <br>
 <img src="https://i.imgur.com/hTfpkg9.png">
-
+<br>
+<b>Trello</b>
+<a>https://trello.com/b/qfveGlGx/project-two-board</a>
+<br>
 <br>
 <b>Technologies used</b> <br>
 Node.js, express, mongoose/mongoDB, javascript, HTML, and Heroku to deploy
