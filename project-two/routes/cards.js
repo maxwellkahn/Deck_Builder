@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const cardsCtrl = require('../controllers/cards');
 
-
-// router.post('/find', cardsCtrl.findCard)
 router.get('/', cardsCtrl.randomCard)
-router.post('/new', cardsCtrl.addCard)
+router.get('/cards/search', cardsCtrl.searchCard)
+router.post('/cards/search', cardsCtrl.findCard)
+router.post('/cards', cardsCtrl.addCard)
+router.post('/decks/:id/cards', cardsCtrl.addToDeck);
 
 module.exports = router;

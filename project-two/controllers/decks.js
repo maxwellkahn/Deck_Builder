@@ -4,7 +4,6 @@ const Deck = require("../models/deck");
 const rootURL = "https://api.scryfall.com/";
 
 module.exports = {
-  // findCard,
   create,
   index,
   show,
@@ -35,10 +34,12 @@ async function index(req, res) {
 async function show(req, res) {
   try {
     const foundDeck = await Deck.findById(req.params.id)
+    const foundCards = await Card.find({})
     .populate('cards'); 
+    // console.log(typeof cards)
       // console.log('found deck: ', foundDeck)
       // console.log('req.params.id ', req.params.id)
-      res.render("decks/show", { deck: foundDeck, cardSearch: null, }); 
+      res.render("decks/show", { deck: foundDeck, cardSearch: null, cards: foundCards }); 
   } catch (err) {
     res.status(404);
   }
@@ -50,7 +51,7 @@ async function update(req, res) {
       new: true,
     });
     console.log('THE UPDATE: ', req.body)
-    res.redirect('/decks/show', { deck: updateDeck, cardSearch: null,});
+    res.redirect(`/decks/${deck._id}`);
   } catch (err) {
     res.status(404).json(err);
   }
@@ -64,24 +65,3 @@ async function deleteDeck(req, res) {
     res.status(404);
   }
 }
-
-// async function findCard(req, res) {
-//   try{
-//   const foundDeck = await Deck.findById(req.params.id)
-//   const cardName = req.body.card;
-//   console.log('THE NAME: ', cardName)
-//   const options = {
-//       url: `${rootURL}cards/named?fuzzy=${cardName}`,
-//     };
-//     console.log('THE API URL: ', options.url)
-//   request(options, function (response, body) {
-//     const cardSearch = JSON.parse(body);
-//     console.log('THE CARD SEARCH ', cardSearch)
-//     // request(options, function (err, response, body) {
-//       res.render("decks/show", { cardSearch, deck: foundDeck});
-//     });
-//   } catch (err) {
-//     res.sendStatus(404);
-//   }
-// }
-
