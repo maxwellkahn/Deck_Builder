@@ -4,6 +4,7 @@ This app is a personal take on an MTG deck building website. By using this app, 
 <br>
 <br>
 <b>Screenshots</b>
+<br>
 <img src="https://i.imgur.com/Dwulxyo.png">
 <br>
 <img src="https://i.imgur.com/il8BTrl.png">
