@@ -1,8 +1,6 @@
 const Card = require("../models/card");
 const Deck = require("../models/deck");
 
-const rootURL = "https://api.scryfall.com/";
-
 module.exports = {
   create,
   index,
@@ -36,9 +34,6 @@ async function show(req, res) {
     const foundDeck = await Deck.findById(req.params.id)
     const foundCards = await Card.find({})
     .populate('cards'); 
-    // console.log(typeof cards)
-      // console.log('found deck: ', foundDeck)
-      // console.log('req.params.id ', req.params.id)
       res.render("decks/show", { deck: foundDeck, cardSearch: null, cards: foundCards }); 
   } catch (err) {
     res.status(404);
