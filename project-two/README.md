@@ -4,11 +4,11 @@ This app is a personal take on an MTG deck building website. By using this app, 
 <br>
 <br>
 <b>Screenshots</b>
-<img src="https://imgur.com/a/FTvvXn3">
+<img src="https://i.imgur.com/Dwulxyo.png">
 <br>
-<img src="https://imgur.com/a/ReCep68">
+<img src="https://i.imgur.com/il8BTrl.png">
 <br>
-<img src="https://imgur.com/a/abIOjZq">
+<img src="https://i.imgur.com/hTfpkg9.png">
 
 <br>
 <b>Technologies used</b> <br>
@@ -16,7 +16,7 @@ Node.js, express, mongoose/mongoDB, javascript, HTML, and Heroku to deploy
 
 
 <b>Getting started</b><br>
- https://git.heroku.com/sagegrouse-deckbuilder.git
+
 
 <b>Next Steps</b>
  <br>
