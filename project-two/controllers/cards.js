@@ -51,6 +51,7 @@ function randomCard(req, res) {
 async function addCard(req, res) {
     try {
       const card = await Card.create(req.body);
+      console.log(card.image_uri)
         res.redirect(`cards/search`);
     } catch (err) {
         res.status(404);
