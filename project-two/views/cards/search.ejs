@@ -9,7 +9,7 @@
   <div class="search">
     <% if (cardSearch) { %> <%= cardSearch.name %>
     <br />
-    <img src="<%= cardSearch.image_uris.small %>" alt="<%= cardSearch.name %>" />
+    <img src="<%= cardSearch.image_uris.normal %>" alt="<%= cardSearch.name %>" />
     <form action="/cards" method="POST">
       <input type="hidden" name="name" value="<%= cardSearch.name %>" />
       <input

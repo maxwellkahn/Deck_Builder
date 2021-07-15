@@ -1,8 +1,7 @@
 <%- include('../partials/header') %>
-<h1>Your deck</h1>
+<h1><%= deck.deckName %></h1>
 
 <div class="cardDeck">
-  <h3><%= deck.deckName %></h3>
   <% if (deck.cards.length > 0) { %>
   <table>
     <% deck.cards.forEach(function(c) { %>

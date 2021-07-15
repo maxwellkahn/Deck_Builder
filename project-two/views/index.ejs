@@ -3,16 +3,15 @@
     <div>
       <form action="/" method="GET">
       <!-- <input type="text" name="cardname" placeholder="Search a Card"> -->
-      <button type="submit">Find new Card</button>
+      <button type="submit">Get Inspiration</button>
       </form>
     </div>
     <div class="display">
       <% if (cardData) { %> 
-        <%= cardData.name %>
         <br />
         <img src="<%= cardData.image_uris.normal %>" alt="<%= cardData.name %>">
       <% } else { %>
-        <h3>get inspiration</h3>
+        <h3>Legend's Spoiler Season</h3>
       <% } %>
 
 
